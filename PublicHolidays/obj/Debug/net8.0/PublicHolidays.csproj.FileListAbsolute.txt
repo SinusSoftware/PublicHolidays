@@ -1,0 +1,11 @@
+C:\Users\Tim\source\repos\PublicHolidays\PublicHolidays\bin\Debug\net8.0\PublicHolidays.deps.json
+C:\Users\Tim\source\repos\PublicHolidays\PublicHolidays\bin\Debug\net8.0\PublicHolidays.dll
+C:\Users\Tim\source\repos\PublicHolidays\PublicHolidays\bin\Debug\net8.0\PublicHolidays.pdb
+C:\Users\Tim\source\repos\PublicHolidays\PublicHolidays\obj\Debug\net8.0\PublicHolidays.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tim\source\repos\PublicHolidays\PublicHolidays\obj\Debug\net8.0\PublicHolidays.AssemblyInfoInputs.cache
+C:\Users\Tim\source\repos\PublicHolidays\PublicHolidays\obj\Debug\net8.0\PublicHolidays.AssemblyInfo.cs
+C:\Users\Tim\source\repos\PublicHolidays\PublicHolidays\obj\Debug\net8.0\PublicHolidays.csproj.CoreCompileInputs.cache
+C:\Users\Tim\source\repos\PublicHolidays\PublicHolidays\obj\Debug\net8.0\PublicHolidays.dll
+C:\Users\Tim\source\repos\PublicHolidays\PublicHolidays\obj\Debug\net8.0\refint\PublicHolidays.dll
+C:\Users\Tim\source\repos\PublicHolidays\PublicHolidays\obj\Debug\net8.0\PublicHolidays.pdb
+C:\Users\Tim\source\repos\PublicHolidays\PublicHolidays\obj\Debug\net8.0\ref\PublicHolidays.dll
