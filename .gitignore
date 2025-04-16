@@ -2,9 +2,9 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/SortCollection/bin
-/SortCollection/obj
+/PublicHolidays/bin
+/PublicHolidays/obj
 /.vs
-/SortCollectionUnitTest/bin
-/SortCollectionUnitTest/obj
+/PublicHolidaysUnitTests/bin
+/PublicHolidaysUnitTests/obj
 TODO_intern.txt
