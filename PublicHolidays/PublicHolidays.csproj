@@ -1,9 +1,35 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <TargetFrameworks>net5.0;net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
+    <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Product>Dirk Tamke's PublicHolidays</Product>
+    <PackageId>SinusSoftware.PublicHolidays</PackageId>
+    <Version>1.0.0</Version>
+    <PackageReleaseNotes>This is release 1.0</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/SinusSoftware/PublicHolidays</PackageProjectUrl>
+    <Authors>Dirk Tamke</Authors>
+    <Company>Dirk Tamke</Company>
+    <PackageTags>Public Holiday German Feiertage Deutschland</PackageTags>
+    <Description>This package contains the calculation of Sunday and public holidays in germany. Example: bool value = datetime.IsSundayOrPublicHoliday()</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/SinusSoftware/PublicHolidays</RepositoryUrl>
+    <Title>PublicHolidays from SinusSoftware</Title>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <Content Include="ReadMe.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </Content>
+  </ItemGroup>
 
 </Project>
