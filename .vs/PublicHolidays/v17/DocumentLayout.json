@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Tim\\source\\repos\\PublicHolidays\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{12BCF253-9E45-9E70-320C-2341791F5B40}|PublicHolidays\\PublicHolidays.csproj|c:\\users\\tim\\source\\repos\\publicholidays\\publicholidays\\publicholidays.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{12BCF253-9E45-9E70-320C-2341791F5B40}|PublicHolidays\\PublicHolidays.csproj|solutionrelative:publicholidays\\publicholidays.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{12BCF253-9E45-9E70-320C-2341791F5B40}|PublicHolidays\\PublicHolidays.csproj|c:\\users\\tim\\source\\repos\\publicholidays\\publicholidays\\publicholidays.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{12BCF253-9E45-9E70-320C-2341791F5B40}|PublicHolidays\\PublicHolidays.csproj|solutionrelative:publicholidays\\publicholidays.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B4983BC-80A3-876F-4D9C-B6DB82D2BF89}|PublicHolidaysUnitTests\\PublicHolidaysUnitTests.csproj|c:\\users\\tim\\source\\repos\\publicholidays\\publicholidaysunittests\\test1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B4983BC-80A3-876F-4D9C-B6DB82D2BF89}|PublicHolidaysUnitTests\\PublicHolidaysUnitTests.csproj|solutionrelative:publicholidaysunittests\\test1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B4983BC-80A3-876F-4D9C-B6DB82D2BF89}|PublicHolidaysUnitTests\\PublicHolidaysUnitTests.csproj|c:\\users\\tim\\source\\repos\\publicholidays\\publicholidaysunittests\\publicholidaysunittests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{6B4983BC-80A3-876F-4D9C-B6DB82D2BF89}|PublicHolidaysUnitTests\\PublicHolidaysUnitTests.csproj|solutionrelative:publicholidaysunittests\\publicholidaysunittests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{12BCF253-9E45-9E70-320C-2341791F5B40}|PublicHolidays\\PublicHolidays.csproj|c:\\users\\tim\\source\\repos\\publicholidays\\publicholidays\\publicholidays.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12BCF253-9E45-9E70-320C-2341791F5B40}|PublicHolidays\\PublicHolidays.csproj|solutionrelative:publicholidays\\publicholidays.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,46 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PublicHolidays",
-              "DocumentMoniker": "C:\\Users\\Tim\\source\\repos\\PublicHolidays\\PublicHolidays\\PublicHolidays.csproj",
-              "RelativeDocumentMoniker": "PublicHolidays\\PublicHolidays.csproj",
-              "ToolTip": "C:\\Users\\Tim\\source\\repos\\PublicHolidays\\PublicHolidays\\PublicHolidays.csproj*",
-              "RelativeToolTip": "PublicHolidays\\PublicHolidays.csproj*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-17T15:36:18.556Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PublicHolidays",
-              "DocumentMoniker": "C:\\Users\\Tim\\source\\repos\\PublicHolidays\\PublicHolidays\\PublicHolidays.csproj",
-              "RelativeDocumentMoniker": "PublicHolidays\\PublicHolidays.csproj",
-              "ToolTip": "C:\\Users\\Tim\\source\\repos\\PublicHolidays\\PublicHolidays\\PublicHolidays.csproj",
-              "RelativeToolTip": "PublicHolidays\\PublicHolidays.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-17T15:36:20.099Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PublicHolidaysUnitTests",
-              "DocumentMoniker": "C:\\Users\\Tim\\source\\repos\\PublicHolidays\\PublicHolidaysUnitTests\\PublicHolidaysUnitTests.csproj",
-              "RelativeDocumentMoniker": "PublicHolidaysUnitTests\\PublicHolidaysUnitTests.csproj",
-              "ToolTip": "C:\\Users\\Tim\\source\\repos\\PublicHolidays\\PublicHolidaysUnitTests\\PublicHolidaysUnitTests.csproj",
-              "RelativeToolTip": "PublicHolidaysUnitTests\\PublicHolidaysUnitTests.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-17T15:34:06.128Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -80,15 +30,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Test1.cs",
-              "DocumentMoniker": "C:\\Users\\Tim\\source\\repos\\PublicHolidays\\PublicHolidaysUnitTests\\Test1.cs",
-              "RelativeDocumentMoniker": "PublicHolidaysUnitTests\\Test1.cs",
-              "ToolTip": "C:\\Users\\Tim\\source\\repos\\PublicHolidays\\PublicHolidaysUnitTests\\Test1.cs",
-              "RelativeToolTip": "PublicHolidaysUnitTests\\Test1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "PublicHolidays.cs",
+              "DocumentMoniker": "C:\\Users\\Tim\\source\\repos\\PublicHolidays\\PublicHolidays\\PublicHolidays.cs",
+              "RelativeDocumentMoniker": "PublicHolidays\\PublicHolidays.cs",
+              "ToolTip": "C:\\Users\\Tim\\source\\repos\\PublicHolidays\\PublicHolidays\\PublicHolidays.cs",
+              "RelativeToolTip": "PublicHolidays\\PublicHolidays.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T15:34:12.886Z",
+              "WhenOpened": "2025-04-17T17:36:27.187Z",
               "EditorCaption": ""
             }
           ]
