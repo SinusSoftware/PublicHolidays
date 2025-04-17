@@ -1,15 +1,32 @@
-﻿namespace PublicHolidaysUnitTests
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace PublicHolidaysUnitTests
 {
     [TestClass]
     public sealed class Test1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void Test()
         {
-            DateTime test = DateTime.Now;
-            bool feiertag = test.IsSundayOrPublicHoliday(PublicHolidays.FederalStates.Bavaria);
+            DateTime datetime = DateTime.Now;
+            bool value = datetime.IsSundayOrPublicHoliday(PublicHolidays.FederalStates.Bavaria);
 
-            bool feiertag2 = test.IsDayOfGermanUnity();
+            value = datetime.IsEasterMonday();
+
+            bool feiertag2 = datetime.IsDayOfGermanUnity();
+
+        }
+
+        [TestMethod]
+        public void IsDayOfGermanUnitytest()
+        {
+            DateTime feiertag3 = new(2025, 10, 3);
+
+
+            bool value = feiertag3.IsDayOfGermanUnity();
 
         }
     }
