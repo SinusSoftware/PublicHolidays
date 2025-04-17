@@ -6,7 +6,7 @@ using System.Linq;
 namespace PublicHolidaysUnitTests
 {
     [TestClass]
-    public sealed class Test1
+    public sealed class PublicHolidaysTests
     {
         [TestMethod]
         public void Test()
