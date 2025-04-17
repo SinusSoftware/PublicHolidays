@@ -2,11 +2,11 @@
 The DLL PublicHolidays shows whether a specific date is a Sunday or a public holiday (Eastern, DayOfGermanUnity,...).
 The public holidays only apply to Germany.
 
-Die DLL PublicHolidays zeigt an, ob ein bestimmtest Datum ein Sonntag oder ein Feiertag ist (Ostern, Tag der deutschen Einheit,...).
-Die Feritage beziehen sich nur auf Deutschland
+Die DLL PublicHolidays zeigt an, ob ein bestimmtes Datum ein Sonntag oder ein Feiertag ist (Ostern, Tag der deutschen Einheit,...).
+Die Feiertage beziehen sich nur auf Deutschland.
 
 ## Installation
-Use the package manager [Nuget](https://www.nuget.org/packages/SinusSoftware.PublicHolidays) to install SortCollection.
+Use the package manager [Nuget](https://www.nuget.org/packages/SinusSoftware.PublicHolidays) to install PublicHolidays.
 
 
 ## Usage
