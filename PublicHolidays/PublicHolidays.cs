@@ -46,7 +46,9 @@
                 IsEpiphany(source) ||
                 IsAssumptionDay(source) ||
                 IsReformationDay(source) ||
-                IsAllSaintsDay(source)
+                IsAllSaintsDay(source) ||
+                IsRepentanceAndPrayerDay(source) ||
+                IsWorldChildrensDay(source)
                 )
             {
                 return true;
@@ -80,7 +82,8 @@
                 IsBoxingDay(source) ||
                 IsNewYearsDay(source) ||
                 IsLabourDay(source) ||
-                IsReformationDay(source, bundesland))
+                IsReformationDay(source, bundesland) ||
+                IsRepentanceAndPrayerDay(source, bundesland))
             {
                 return true;
             }
@@ -167,9 +170,16 @@
                     return true;
                 }
             }
-            else if (bundesland == FederalStates.Saxony)
+            //else if (bundesland == FederalStates.Saxony)
+            //{
+            //    if (IsRepentanceAndPrayerDay(source, bundesland))
+            //    {
+            //        return true;
+            //    }
+            //}
+            else if (bundesland == FederalStates.Thuringia)
             {
-                if (IsBussUndBettag(source, bundesland))
+                if (IsWorldChildrensDay(source))
                 {
                     return true;
                 }
@@ -352,14 +362,35 @@
             }
             return false;
         }
-
+        
         /// <summary>
-        /// In german 'Reformationstag'.
+        /// In german 'Weltkindertag'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsBussUndBettag(this DateTime date)
+        public static bool IsWorldChildrensDay(this DateTime date)
         {
-            if (date.Month == 10 && date.Day == 31)
+            if (date.Month == 09 && date.Day == 20)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// In german 'Buss- und Bettag'.
+        /// </summary>
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        public static bool IsRepentanceAndPrayerDay(this DateTime date)
+        {
+            // Erster Advent ist der vierte Sonntag vor dem 25. Dezember
+            DateTime ersterAdvent = CalculateFirstAdvent(date.Year);
+
+            DateTime totensonntag = ersterAdvent.AddDays(-7);
+
+            // Buß- und Bettag ist der Mittwoch vor dem Totensonntag
+            DateTime bussUndBettag = totensonntag.AddDays(-4); // 4 Tage zurück von Sonntag zu Mittwoch
+
+            if (bussUndBettag.Year == date.Year && bussUndBettag.Month == date.Month && bussUndBettag.Day == date.Day)
             {
                 return true;
             }
@@ -393,12 +424,12 @@
             return false;
         }
 
-        private static bool IsBussUndBettag(this DateTime date, FederalStates bundesland)
+        private static bool IsRepentanceAndPrayerDay(this DateTime date, FederalStates bundesland)
         {
 
             if (bundesland == FederalStates.Saxony)
             {
-                return IsBussUndBettag(date);
+                return IsRepentanceAndPrayerDay(date);
             }
             else if (bundesland == FederalStates.Lower_Saxony ||
                      bundesland == FederalStates.Hamburg ||
@@ -407,12 +438,24 @@
             {
                 if (date.Year < 1995)
                 {
-                    return IsBussUndBettag(date);
+                    return IsRepentanceAndPrayerDay(date);
                 }
             }
             return false;
         }
 
+        private static DateTime CalculateFirstAdvent(int year)
+        {
+            DateTime christmas = new DateTime(year, 12, 25);
+
+            // Finde den Wochentag des 25. Dezember
+            DayOfWeek christmasDayOfWeek = christmas.DayOfWeek;
+
+            // Berechne den ersten Advent
+            DateTime firstAdvent = christmas.AddDays(-((int)christmasDayOfWeek + 21));
+
+            return firstAdvent;
+        }
 
         private static DateTime CalculateEasterSunday(int year)
         {

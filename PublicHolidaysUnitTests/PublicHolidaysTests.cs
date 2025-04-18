@@ -38,13 +38,15 @@ namespace PublicHolidaysUnitTests
             DateTime feiertag7 = new(2025, 05, 29);
             bool value7 = feiertag7.IsAscensionOfChrist();
 
+            DateTime feiertag8 = new(2025, 11, 19);
+            bool value8 = feiertag8.IsRepentanceAndPrayerDay();
+            
 
             string hallo = "";
             /*
              * https://www.ferienwiki.de/feiertage/2025/de
              Internationaler Frauentag 	08.03.2025 (Samstag) 	Berlin und Mecklenburg-Vorpommern
-           
-             Buß- und Bettag in Deutschland 	19.11.2025 (Mittwoch) 	Sachsen
+ 
 
             Weltkindertag in Deutschland 	20.09.2025 (Samstag) 	Thüringen
 
