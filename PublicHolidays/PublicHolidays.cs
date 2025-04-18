@@ -52,7 +52,7 @@
                 return true;
             }
 
-            DateTime ostersonntag = CalculateEasterMonday(source.Year);
+            DateTime ostersonntag = CalculateEasterSunday(source.Year);
             if (IsGoodFriday(ostersonntag, source) ||
                 IsEasterMonday(ostersonntag, source) ||
                 IsAscensionOfChrist(ostersonntag, source) ||
@@ -85,7 +85,7 @@
                 return true;
             }
 
-            DateTime ostersonntag = CalculateEasterMonday(source.Year);
+            DateTime ostersonntag = CalculateEasterSunday(source.Year);
 
             if (bundesland == FederalStates.Bavaria)
             {
@@ -104,13 +104,13 @@
             //else if (bundesland == FederalStates.Berlin)
             //{
             //}
-            else if (bundesland == FederalStates.Brandenburg)
-            {
-                if (IsReformationDay(source))
-                {
-                    return true;
-                }
-            }
+            //else if (bundesland == FederalStates.Brandenburg)
+            //{
+            //    if (IsReformationDay(source))
+            //    {
+            //        return true;
+            //    }
+            //}
             //else if (bundesland == FederalStates.Bremen)
             //{
             //    if (IsReformationDay(source))
@@ -167,6 +167,13 @@
                     return true;
                 }
             }
+            else if (bundesland == FederalStates.Saxony)
+            {
+                if (IsBussUndBettag(source, bundesland))
+                {
+                    return true;
+                }
+            }
 
             if (IsGoodFriday(ostersonntag, source) ||
                 IsEasterMonday(ostersonntag, source) ||
@@ -185,7 +192,7 @@
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static bool IsEasterMonday(this DateTime source)
         {
-            DateTime ostersonntag = CalculateEasterMonday(source.Year);
+            DateTime ostersonntag = CalculateEasterSunday(source.Year);
             return IsEasterMonday(ostersonntag, source);
         }
 
@@ -195,7 +202,7 @@
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static bool IsGoodFriday(this DateTime source)
         {
-            DateTime ostersonntag = CalculateEasterMonday(source.Year);
+            DateTime ostersonntag = CalculateEasterSunday(source.Year);
             return IsGoodFriday(ostersonntag, source);
         }
 
@@ -205,7 +212,7 @@
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static bool IsAscensionOfChrist(this DateTime source)
         {
-            DateTime ostersonntag = CalculateEasterMonday(source.Year);
+            DateTime ostersonntag = CalculateEasterSunday(source.Year);
             return IsAscensionOfChrist(ostersonntag, source);
         }
 
@@ -215,7 +222,7 @@
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static bool IsWhitMonday(this DateTime source)
         {
-            DateTime ostersonntag = CalculateEasterMonday(source.Year);
+            DateTime ostersonntag = CalculateEasterSunday(source.Year);
             return IsWhitMonday(ostersonntag, source);
         }
 
@@ -225,7 +232,7 @@
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static bool IsCorpusChristi(this DateTime source)
         {
-            DateTime ostersonntag = CalculateEasterMonday(source.Year);
+            DateTime ostersonntag = CalculateEasterSunday(source.Year);
             return IsCorpusChristi(ostersonntag, source);
         }
 
@@ -321,6 +328,19 @@
         }
 
         /// <summary>
+        /// In german 'Allerheiligen'.
+        /// </summary>
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        public static bool IsAllSaintsDay(this DateTime date)
+        {
+            if (date.Month == 11 && date.Day == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// In german 'Reformationstag'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -334,12 +354,12 @@
         }
 
         /// <summary>
-        /// In german 'Allerheiligen'.
+        /// In german 'Reformationstag'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsAllSaintsDay(this DateTime date)
+        public static bool IsBussUndBettag(this DateTime date)
         {
-            if (date.Month == 11 && date.Day == 1)
+            if (date.Month == 10 && date.Day == 31)
             {
                 return true;
             }
@@ -355,7 +375,7 @@
                 bundesland == FederalStates.Saxony_Anhalt ||
                 bundesland == FederalStates.Thuringia)
             {
-                if(date.Year >=1990)
+                if (date.Year >= 1990)
                 {
                     return IsReformationDay(date);
                 }
@@ -373,7 +393,28 @@
             return false;
         }
 
-        private static DateTime CalculateEasterMonday(int year)
+        private static bool IsBussUndBettag(this DateTime date, FederalStates bundesland)
+        {
+
+            if (bundesland == FederalStates.Saxony)
+            {
+                return IsBussUndBettag(date);
+            }
+            else if (bundesland == FederalStates.Lower_Saxony ||
+                     bundesland == FederalStates.Hamburg ||
+                     bundesland == FederalStates.Schleswig_Holstein ||
+                     bundesland == FederalStates.Bremen)
+            {
+                if (date.Year < 1995)
+                {
+                    return IsBussUndBettag(date);
+                }
+            }
+            return false;
+        }
+
+
+        private static DateTime CalculateEasterSunday(int year)
         {
             // Algorithmen zur Berechnung des Ostersonntags (z.B. Meeus/Jones/Butcher)
             int a = year % 19;
@@ -399,7 +440,8 @@
             // Pfingstsonntag ist 49 Tage nach Ostersonntag
             DateTime pfingstsonntag = ostersonntag.AddDays(49);
             // Fronleichnam ist 11 Tage nach Pfingstsonntag
-            if (pfingstsonntag.Year == source.Year && pfingstsonntag.Month == source.Month && pfingstsonntag.AddDays(11).Day == source.Day)
+            pfingstsonntag = pfingstsonntag.AddDays(11);
+            if (pfingstsonntag.Year == source.Year && pfingstsonntag.Month == source.Month && pfingstsonntag.Day == source.Day)
                 return true;
             return false;
         }
@@ -407,7 +449,8 @@
         private static bool IsEasterMonday(DateTime ostersonntag, DateTime source)
         {
             // Ostermontag ist der Tag nach Ostersonntag
-            if (ostersonntag.Year == source.Year && ostersonntag.Month == source.Month && ostersonntag.AddDays(1).Day == source.Day)
+            ostersonntag = ostersonntag.AddDays(1);
+            if (ostersonntag.Year == source.Year && ostersonntag.Month == source.Month && ostersonntag.Day == source.Day)
                 return true;
             return false;
         }
@@ -415,7 +458,8 @@
         private static bool IsGoodFriday(DateTime ostersonntag, DateTime source)
         {
             // Karfreitag ist der Freitag vor Ostersonntag
-            if (ostersonntag.Year == source.Year && ostersonntag.Month == source.Month && ostersonntag.AddDays(-2).Day == source.Day)
+            ostersonntag = ostersonntag.AddDays(-2);
+            if (ostersonntag.Year == source.Year && ostersonntag.Month == source.Month && ostersonntag.Day == source.Day)
                 return true;
             return false;
         }
@@ -424,7 +468,8 @@
         {
             // Christi Himmelfahrt ist 40 Tage nach Ostersonntag
             // 39 Tage, da Ostersonntag selbst als Tag 1 zählt
-            if (ostersonntag.Year == source.Year && ostersonntag.Month == source.Month && ostersonntag.AddDays(39).Day == source.Day)
+            ostersonntag = ostersonntag.AddDays(39);
+            if (ostersonntag.Year == source.Year && ostersonntag.Month == source.Month && ostersonntag.Day == source.Day)
                 return true;
             return false;
         }
@@ -432,7 +477,8 @@
         private static bool IsWhitMonday(DateTime ostersonntag, DateTime source)
         {
             // Pfingstmontag ist 50 Tage nach Ostersonntag
-            if (ostersonntag.Year == source.Year && ostersonntag.Month == source.Month && ostersonntag.AddDays(50).Day == source.Day)
+            ostersonntag = ostersonntag.AddDays(50);
+            if (ostersonntag.Year == source.Year && ostersonntag.Month == source.Month && ostersonntag.Day == source.Day)
                 return true;
             return false;
         }
