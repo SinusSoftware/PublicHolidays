@@ -48,7 +48,9 @@
                 IsReformationDay(source) ||
                 IsAllSaintsDay(source) ||
                 IsRepentanceAndPrayerDay(source) ||
-                IsWorldChildrensDay(source)
+                IsWorldChildrensDay(source)||
+                IsInternationalWomensDay(source) ||
+                IsAnniversaryOfTheLiberationFromNationalSocialismAndTheEndOfTheSecondWorldWar(source)
                 )
             {
                 return true;
@@ -104,9 +106,13 @@
                     return true;
                 }
             }
-            //else if (bundesland == FederalStates.Berlin)
-            //{
-            //}
+            else if (bundesland == FederalStates.Berlin)
+            {
+                if (IsInternationalWomensDay(source) || IsAnniversaryOfTheLiberationFromNationalSocialismAndTheEndOfTheSecondWorldWar(source))
+                {
+                    return true;
+                }
+            }
             //else if (bundesland == FederalStates.Brandenburg)
             //{
             //    if (IsReformationDay(source))
@@ -135,13 +141,13 @@
                     return true;
                 }
             }
-            //else if (bundesland == FederalStates.Mecklenburg_Western_Pomerania)
-            //{
-            //    if (IsReformationDay(source))
-            //    {
-            //        return true;
-            //    }
-            //}
+            else if (bundesland == FederalStates.Mecklenburg_Western_Pomerania)
+            {
+                if (IsInternationalWomensDay(source))
+                {
+                    return true;
+                }
+            }
             //else if (bundesland == FederalStates.Lower_Saxony)
             //{
             //    if (IsReformationDay(source))
@@ -362,7 +368,7 @@
             }
             return false;
         }
-        
+
         /// <summary>
         /// In german 'Weltkindertag'.
         /// </summary>
@@ -376,6 +382,31 @@
             return false;
         }
 
+        /// <summary>
+        /// In german 'Internationaler Frauentag'.
+        /// </summary>
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        public static bool IsInternationalWomensDay(this DateTime date)
+        {
+            if (date.Month == 03 && date.Day == 08)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        ///  In german 'Jahrestag der Befreiung vom Nationalsozialismus und Ende des Zweiten Weltkriegs'
+        /// </summary>
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        public static bool IsAnniversaryOfTheLiberationFromNationalSocialismAndTheEndOfTheSecondWorldWar(this DateTime date)
+        {
+            if (date.Year == 2025 && date.Month == 05 && date.Day == 08)
+            {
+                return true;
+            }
+            return false;
+        }
         /// <summary>
         /// In german 'Buss- und Bettag'.
         /// </summary>

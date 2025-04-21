@@ -1,63 +1,58 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace PublicHolidaysUnitTests
 {
+    /*
+      https://www.ferienwiki.de/feiertage/2025/de
+      https://www.dgb.de/service/ratgeber/feiertage/
+     */
+
     [TestClass]
     public sealed class PublicHolidaysTests
     {
         [TestMethod]
-        public void Test()
+        public void IsSundayOrPublicHolidayTest_Bavaria()
         {
-            DateTime datetime = DateTime.Now;
+            DateTime datetime = new(2026,04,06);
             bool value = datetime.IsSundayOrPublicHoliday(PublicHolidays.FederalStates.Bavaria);
-
-            value = datetime.IsEasterMonday();
-
-            bool feiertag2 = datetime.IsDayOfGermanUnity();
-
+            Assert.IsTrue(value);
         }
 
         [TestMethod]
-        public void IsDayOfGermanUnitytest2()
+        public void IsEsternTest()
         {
-            DateTime feiertag3 = new(2025, 04, 18);
-           bool value = feiertag3.IsGoodFriday();
+            DateTime datetime = new(2025, 04, 18);
+            bool value = datetime.IsGoodFriday();
+            Assert.IsTrue(value);
 
-            DateTime feiertag4 = new(2025, 04, 21);
-            bool value4 = feiertag4.IsEasterMonday();
+            DateTime datetime2 = new(2025, 04, 21);
+            bool value2 = datetime2.IsEasterMonday();
+            Assert.IsTrue(value2);
 
-            DateTime feiertag5 = new(2025, 06, 09);
-            bool value5 = feiertag5.IsWhitMonday();// 55
+            DateTime datetime3 = new(2025, 06, 09);
+            bool value3 = datetime3.IsWhitMonday();
+            Assert.IsTrue(value3);
 
-            DateTime feiertag6 = new(2025, 06, 19);
-            bool value6 = feiertag6.IsCorpusChristi();
+            DateTime datetime4 = new(2025, 06, 19);
+            bool value4 = datetime4.IsCorpusChristi();
+            Assert.IsTrue(value4);
 
-            DateTime feiertag7 = new(2025, 05, 29);
-            bool value7 = feiertag7.IsAscensionOfChrist();
-
-            DateTime feiertag8 = new(2025, 11, 19);
-            bool value8 = feiertag8.IsRepentanceAndPrayerDay();
-            
-
-            string hallo = "";
-            /*
-             * https://www.ferienwiki.de/feiertage/2025/de
-             Internationaler Frauentag 	08.03.2025 (Samstag) 	Berlin und Mecklenburg-Vorpommern
- 
-
-            Weltkindertag in Deutschland 	20.09.2025 (Samstag) 	Thüringen
-
-            Jahrestag der Befreiung vom Nationalsozialismus und Ende des Zweiten Weltkriegs
-
-            https://www.dgb.de/service/ratgeber/feiertage/
-             */
+            DateTime datetime5 = new(2025, 05, 29);
+            bool value5 = datetime5.IsAscensionOfChrist();
+            Assert.IsTrue(value5);
         }
 
         [TestMethod]
-        public void IsDayOfGermanUnitytest()
+        public void IsRepentanceAndPrayerDayTest()
+        {
+            DateTime datetime = new(2025, 11, 19);
+            bool value = datetime.IsRepentanceAndPrayerDay();
+            Assert.IsTrue(value);
+        }
+
+        [TestMethod]
+        public void IsDayOfGermanUnityTest()
         {
             DateTime feiertag3 = new(2025, 10, 3);
             bool value = feiertag3.IsDayOfGermanUnity();
