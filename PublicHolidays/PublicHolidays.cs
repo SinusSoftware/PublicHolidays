@@ -30,7 +30,7 @@
         }
 
         /// <summary>
-        /// The day is a Sunday or public holiday
+        /// The day is a Sunday or public holiday anywhere in germany
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static bool IsSundayOrPublicHoliday(this DateTime source)
@@ -69,7 +69,7 @@
         }
 
         /// <summary>
-        /// The day is a Sunday or public holiday
+        /// The day is a Sunday or public holiday on a spezified federal state
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
         public static bool IsSundayOrPublicHoliday(this DateTime source, FederalStates bundesland)
