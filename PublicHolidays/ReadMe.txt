@@ -21,5 +21,8 @@ bool value = datetime.IsSundayOrPublicHoliday(PublicHolidays.FederalStates.Bavar
 
 == Changelog ==
 
+= 1.x =
+* Show comments
+
 = 1.0 =
 * First version
