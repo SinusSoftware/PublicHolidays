@@ -11,7 +11,7 @@ namespace PublicHolidaysUnitTests
     [TestClass]
     public sealed class PublicHolidaysTests
     {
-        /*
+        
         [TestMethod]
         public void IsSundayOrPublicHolidayTest_Bavaria()
         {
@@ -59,6 +59,6 @@ namespace PublicHolidaysUnitTests
             bool value = feiertag3.IsDayOfGermanUnity();
             Assert.IsTrue(value);
         }
-        */
+        
     }
 }

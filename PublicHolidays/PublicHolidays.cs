@@ -3,45 +3,45 @@
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
-    /// Wraps static sort apis into a uniform extension method api.
+    /// PublicHolidays in germany
     /// </summary>
     [ExcludeFromCodeCoverage]
     public static partial class PublicHolidays
     {
-        ///<summary></summary>
+        ///<summary>Enum for the federal states of germany</summary>
         public enum FederalStates
         {
-            ///<summary></summary>
+            ///<summary>Baden-W&#252;ttemberg</summary>
             Baden_Wuerttemberg,
-            ///<summary></summary>
+            ///<summary>Bayern</summary>
             Bavaria,
-            ///<summary></summary>
+            ///<summary>Berlin</summary>
             Berlin,
-            ///<summary></summary>
+            ///<summary>Brandenburg</summary>
             Brandenburg,
-            ///<summary></summary>
+            ///<summary>Bremen</summary>
             Bremen,
-            ///<summary></summary>
+            ///<summary>Hamburg</summary>
             Hamburg,
-            ///<summary></summary>
+            ///<summary>Hessen</summary>
             Hesse,
-            ///<summary></summary>
+            ///<summary>Mecklenburg-Vorpommern</summary>
             Mecklenburg_Western_Pomerania,
-            ///<summary></summary>
+            ///<summary>Niedersachsen</summary>
             Lower_Saxony,
-            ///<summary></summary>
+            ///<summary>Nordrhein-Westfalen</summary>
             North_Rhine_Westphalia,
-            ///<summary></summary>
+            ///<summary>Rheinland-Pfalz</summary>
             Rhineland_Palatinate,
-            ///<summary></summary>
+            ///<summary>Saarland</summary>
             Saarland,
-            ///<summary></summary>
+            ///<summary>Sachsen</summary>
             Saxony,
-            ///<summary></summary>
+            ///<summary>Sachsen-Anhalt</summary>
             Saxony_Anhalt,
-            ///<summary></summary>
+            ///<summary>Schleswig-Holstein</summary>
             Schleswig_Holstein,
-            ///<summary></summary>
+            ///<summary>Th&#252;ringen</summary>
             Thuringia
         }
 
@@ -86,11 +86,42 @@
         }
 
         /// <summary>
+        /// The day is a Sunday or only a nationwide public holiday<br/>
+        /// Der Tag ist ein Sonntag oder nur ein bundesweiter öffentlicher Feiertag
+        /// </summary>
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        public static bool IsSundayOrPublicHolidayOnlyNationwide(this DateTime source)
+        {
+            if (source.DayOfWeek == DayOfWeek.Sunday)
+                return true;
+
+            if (IsDayOfGermanUnity(source) ||
+                IsFirstChristmasDay(source) ||
+                IsBoxingDay(source) ||
+                IsNewYearsDay(source) ||
+                IsLabourDay(source)
+                )
+            {
+                return true;
+            }
+
+            DateTime ostersonntag = CalculateEasterSunday(source.Year);
+            if (IsGoodFriday(ostersonntag, source) ||
+                IsEasterMonday(ostersonntag, source) ||
+                IsAscensionOfChrist(ostersonntag, source) ||
+                IsWhitMonday(ostersonntag, source))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// The day is a Sunday or public holiday on a spezified federal state<br/>
         /// Der Tag ist ein Sonntag oder ein öffentlicher Feiertag in einem bestimmten Bundesland
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsSundayOrPublicHoliday(this DateTime source, FederalStates bundesland)
+        public static bool IsSundayOrPublicHoliday(this DateTime source, FederalStates federalstate)
         {
             if (source.DayOfWeek == DayOfWeek.Sunday)
             {
@@ -102,67 +133,26 @@
                 IsBoxingDay(source) ||
                 IsNewYearsDay(source) ||
                 IsLabourDay(source) ||
-                IsReformationDay(source, bundesland) ||
-                IsRepentanceAndPrayerDay(source, bundesland) ||
-                IsAnniversaryOfTheLiberationFromNationalSocialismAndTheEndOfTheSecondWorldWar(source, bundesland) ||
-                IsWorldChildrensDay(source, bundesland) ||
-                IsInternationalWomensDay(source, bundesland) ||
-                IsAllSaintsDay(source, bundesland) ||
-                IsAssumptionDay(source, bundesland) ||
-                IsEpiphany(source, bundesland))
+                IsReformationDay(source, federalstate) ||
+                IsRepentanceAndPrayerDay(source, federalstate) ||
+                IsAnniversaryOfTheLiberationFromNationalSocialismAndTheEndOfTheSecondWorldWar(source, federalstate) ||
+                IsWorldChildrensDay(source, federalstate) ||
+                IsInternationalWomensDay(source, federalstate) ||
+                IsAllSaintsDay(source, federalstate) ||
+                IsAssumptionDay(source, federalstate) ||
+                IsEpiphany(source, federalstate))
             {
                 return true;
             }
 
             DateTime ostersonntag = CalculateEasterSunday(source.Year);
 
-            if (bundesland == FederalStates.Bavaria)
-            {
-                if (IsCorpusChristi(ostersonntag, source))
-                {
-                    return true;
-                }
-            }
-            else if (bundesland == FederalStates.Baden_Wuerttemberg)
-            {
-                if (IsCorpusChristi(ostersonntag, source))
-                {
-                    return true;
-                }
-            }
-
-            else if (bundesland == FederalStates.Hesse)
-            {
-                if (IsCorpusChristi(ostersonntag, source))
-                {
-                    return true;
-                }
-            }
-            else if (bundesland == FederalStates.North_Rhine_Westphalia)
-            {
-                if (IsCorpusChristi(ostersonntag, source))
-                {
-                    return true;
-                }
-            }
-            else if (bundesland == FederalStates.Rhineland_Palatinate)
-            {
-                if (IsCorpusChristi(ostersonntag, source))
-                {
-                    return true;
-                }
-            }
-            else if (bundesland == FederalStates.Saarland)
-            {
-                if (IsCorpusChristi(ostersonntag, source))
-                {
-                    return true;
-                }
-            }
             if (IsGoodFriday(ostersonntag, source) ||
                 IsEasterMonday(ostersonntag, source) ||
                 IsAscensionOfChrist(ostersonntag, source) ||
-                IsWhitMonday(ostersonntag, source))
+                IsWhitMonday(ostersonntag, source) ||
+                IsCorpusChristi(ostersonntag, source, federalstate)
+                )
             {
                 return true;
             }
@@ -214,9 +204,9 @@
         /// In german 'Tag der deutschen Einheit'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsDayOfGermanUnity(this DateTime date)
+        public static bool IsDayOfGermanUnity(this DateTime source)
         {
-            if (date.Month == 10 && date.Day == 3)
+            if (source.Month == 10 && source.Day == 3)
             {
                 return true;
             }
@@ -227,9 +217,9 @@
         /// In german 'Erster Weihnachtsfeiertag'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsFirstChristmasDay(this DateTime date)
+        public static bool IsFirstChristmasDay(this DateTime source)
         {
-            if (date.Month == 12 && date.Day == 25)
+            if (source.Month == 12 && source.Day == 25)
             {
                 return true;
             }
@@ -240,9 +230,9 @@
         /// In german 'Zweiter Weihnachtsfeiertag'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsBoxingDay(this DateTime date)
+        public static bool IsBoxingDay(this DateTime source)
         {
-            if (date.Month == 12 && date.Day == 26)
+            if (source.Month == 12 && source.Day == 26)
             {
                 return true;
             }
@@ -253,9 +243,9 @@
         /// In german 'Neujahrstag'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsNewYearsDay(this DateTime date)
+        public static bool IsNewYearsDay(this DateTime source)
         {
-            if (date.Month == 1 && date.Day == 1)
+            if (source.Month == 1 && source.Day == 1)
             {
                 return true;
             }
@@ -266,9 +256,9 @@
         /// In german 'Erste Mai'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsLabourDay(this DateTime date)
+        public static bool IsLabourDay(this DateTime source)
         {
-            if (date.Month == 5 && date.Day == 1)
+            if (source.Month == 5 && source.Day == 1)
             {
                 return true;
             }
@@ -289,41 +279,19 @@
         /// In german 'Fronleichnam'. 11 days after whit monday
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsCorpusChristi(this DateTime source, FederalStates bundesland)
+        public static bool IsCorpusChristi(this DateTime source, FederalStates federalState)
         {
             DateTime ostersonntag = CalculateEasterSunday(source.Year);
-            if (bundesland == FederalStates.Bavaria ||
-                bundesland == FederalStates.Baden_Wuerttemberg ||
-                bundesland == FederalStates.Hesse ||
-                bundesland == FederalStates.North_Rhine_Westphalia ||
-                bundesland == FederalStates.Rhineland_Palatinate ||
-                bundesland == FederalStates.Saarland
-                )
-            {
-                return IsCorpusChristi(source);
-            }
-            return false;
+            return IsCorpusChristi(ostersonntag, source, federalState);
         }
-
-        /*
-        /// <summary>
-        /// In german 'Fronleichnam'. 11 days after whit monday
-        /// </summary>
-        */
-        //private static bool IsCorpusChristi(DateTime date, DateTime ostersonntag, FederalStates bundesland)
-        //{
-
-        //    return IsCorpusChristi(ostersonntag, date);
-        //}
-
 
         /// <summary>
         /// In german 'HeiligeDreiKönige'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsEpiphany(this DateTime date)
+        public static bool IsEpiphany(this DateTime source)
         {
-            if (date.Month == 1 && date.Day == 6)
+            if (source.Month == 1 && source.Day == 6)
             {
                 return true;
             }
@@ -334,12 +302,12 @@
         /// In german 'HeiligeDreiKönige'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsEpiphany(this DateTime date, FederalStates bundesland)
+        public static bool IsEpiphany(this DateTime source, FederalStates federalState)
         {
-            if (bundesland == FederalStates.Bavaria ||
-                bundesland == FederalStates.Baden_Wuerttemberg)
+            if (federalState == FederalStates.Bavaria ||
+                federalState == FederalStates.Baden_Wuerttemberg)
             {
-                return IsEpiphany(date);
+                return IsEpiphany(source);
             }
             return false;
         }
@@ -348,9 +316,9 @@
         /// In german 'MariaeHimmelfahrt'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsAssumptionDay(this DateTime date)
+        public static bool IsAssumptionDay(this DateTime source)
         {
-            if (date.Month == 8 && date.Day == 15)
+            if (source.Month == 8 && source.Day == 15)
             {
                 return true;
             }
@@ -361,12 +329,12 @@
         /// In german 'MariaeHimmelfahrt'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsAssumptionDay(this DateTime date, FederalStates bundesland)
+        public static bool IsAssumptionDay(this DateTime source, FederalStates federalState)
         {
-            if (bundesland == FederalStates.Bavaria ||
-                bundesland == FederalStates.Saarland)
+            if (federalState == FederalStates.Bavaria ||
+                federalState == FederalStates.Saarland)
             {
-                return IsAssumptionDay(date);
+                return IsAssumptionDay(source);
             }
             return false;
         }
@@ -375,9 +343,9 @@
         /// In german 'Allerheiligen'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsAllSaintsDay(this DateTime date)
+        public static bool IsAllSaintsDay(this DateTime source)
         {
-            if (date.Month == 11 && date.Day == 1)
+            if (source.Month == 11 && source.Day == 1)
             {
                 return true;
             }
@@ -388,15 +356,15 @@
         /// In german 'Allerheiligen'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsAllSaintsDay(this DateTime date, FederalStates bundesland)
+        public static bool IsAllSaintsDay(this DateTime source, FederalStates federalState)
         {
-            if (bundesland == FederalStates.North_Rhine_Westphalia ||
-                bundesland == FederalStates.Rhineland_Palatinate ||
-                bundesland == FederalStates.Saarland ||
-                bundesland == FederalStates.Baden_Wuerttemberg ||
-                bundesland == FederalStates.Bavaria)
+            if (federalState == FederalStates.North_Rhine_Westphalia ||
+                federalState == FederalStates.Rhineland_Palatinate ||
+                federalState == FederalStates.Saarland ||
+                federalState == FederalStates.Baden_Wuerttemberg ||
+                federalState == FederalStates.Bavaria)
             {
-                return IsAllSaintsDay(date);
+                return IsAllSaintsDay(source);
             }
             return false;
         }
@@ -405,9 +373,9 @@
         /// In german 'Reformationstag'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsReformationDay(this DateTime date)
+        public static bool IsReformationDay(this DateTime source)
         {
-            if (date.Month == 10 && date.Day == 31)
+            if (source.Month == 10 && source.Day == 31)
             {
                 return true;
             }
@@ -418,28 +386,28 @@
         /// In german 'Reformationstag'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsReformationDay(this DateTime date, FederalStates bundesland)
+        public static bool IsReformationDay(this DateTime source, FederalStates federalState)
         {
 
-            if (bundesland == FederalStates.Mecklenburg_Western_Pomerania ||
-                bundesland == FederalStates.Brandenburg ||
-                bundesland == FederalStates.Saxony ||
-                bundesland == FederalStates.Saxony_Anhalt ||
-                bundesland == FederalStates.Thuringia)
+            if (federalState == FederalStates.Mecklenburg_Western_Pomerania ||
+                federalState == FederalStates.Brandenburg ||
+                federalState == FederalStates.Saxony ||
+                federalState == FederalStates.Saxony_Anhalt ||
+                federalState == FederalStates.Thuringia)
             {
-                if (date.Year >= 1990)
+                if (source.Year >= 1990)
                 {
-                    return IsReformationDay(date);
+                    return IsReformationDay(source);
                 }
             }
-            if (bundesland == FederalStates.Lower_Saxony ||
-                bundesland == FederalStates.Hamburg ||
-                bundesland == FederalStates.Schleswig_Holstein ||
-                bundesland == FederalStates.Bremen)
+            if (federalState == FederalStates.Lower_Saxony ||
+                federalState == FederalStates.Hamburg ||
+                federalState == FederalStates.Schleswig_Holstein ||
+                federalState == FederalStates.Bremen)
             {
-                if (date.Year >= 2018)
+                if (source.Year >= 2018)
                 {
-                    return IsReformationDay(date);
+                    return IsReformationDay(source);
                 }
             }
             return false;
@@ -449,9 +417,9 @@
         /// In german 'Weltkindertag'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsWorldChildrensDay(this DateTime date)
+        public static bool IsWorldChildrensDay(this DateTime source)
         {
-            if (date.Month == 09 && date.Day == 20)
+            if (source.Month == 09 && source.Day == 20)
             {
                 return true;
             }
@@ -462,11 +430,11 @@
         /// In german 'Weltkindertag'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsWorldChildrensDay(this DateTime date, FederalStates bundesland)
+        public static bool IsWorldChildrensDay(this DateTime source, FederalStates federalState)
         {
-            if (bundesland == FederalStates.Thuringia)
+            if (federalState == FederalStates.Thuringia)
             {
-                return IsWorldChildrensDay(date);
+                return IsWorldChildrensDay(source);
             }
             return false;
         }
@@ -475,9 +443,9 @@
         /// In german 'Internationaler Frauentag'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsInternationalWomensDay(this DateTime date)
+        public static bool IsInternationalWomensDay(this DateTime source)
         {
-            if (date.Month == 03 && date.Day == 08)
+            if (source.Month == 03 && source.Day == 08)
             {
                 return true;
             }
@@ -488,12 +456,12 @@
         /// In german 'Internationaler Frauentag'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsInternationalWomensDay(this DateTime date, FederalStates bundesland)
+        public static bool IsInternationalWomensDay(this DateTime source, FederalStates federalState)
         {
-            if (bundesland == FederalStates.Berlin ||
-                bundesland == FederalStates.Mecklenburg_Western_Pomerania)
+            if (federalState == FederalStates.Berlin ||
+                federalState == FederalStates.Mecklenburg_Western_Pomerania)
             {
-                return IsInternationalWomensDay(date);
+                return IsInternationalWomensDay(source);
             }
             return false;
         }
@@ -502,9 +470,9 @@
         ///  In german 'Jahrestag der Befreiung vom Nationalsozialismus und Ende des Zweiten Weltkriegs'
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsAnniversaryOfTheLiberationFromNationalSocialismAndTheEndOfTheSecondWorldWar(this DateTime date)
+        public static bool IsAnniversaryOfTheLiberationFromNationalSocialismAndTheEndOfTheSecondWorldWar(this DateTime source)
         {
-            if (date.Year == 2025 && date.Month == 05 && date.Day == 08)
+            if (source.Year == 2025 && source.Month == 05 && source.Day == 08)
             {
                 return true;
             }
@@ -515,11 +483,11 @@
         ///  In german 'Jahrestag der Befreiung vom Nationalsozialismus und Ende des Zweiten Weltkriegs'
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsAnniversaryOfTheLiberationFromNationalSocialismAndTheEndOfTheSecondWorldWar(this DateTime date, FederalStates bundesland)
+        public static bool IsAnniversaryOfTheLiberationFromNationalSocialismAndTheEndOfTheSecondWorldWar(this DateTime source, FederalStates federalState)
         {
-            if (bundesland == FederalStates.Berlin)
+            if (federalState == FederalStates.Berlin)
             {
-                return IsAnniversaryOfTheLiberationFromNationalSocialismAndTheEndOfTheSecondWorldWar(date);
+                return IsAnniversaryOfTheLiberationFromNationalSocialismAndTheEndOfTheSecondWorldWar(source);
             }
             return false;
         }
@@ -528,17 +496,17 @@
         /// In german 'Buss- und Bettag'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsRepentanceAndPrayerDay(this DateTime date)
+        public static bool IsRepentanceAndPrayerDay(this DateTime source)
         {
             // Erster Advent ist der vierte Sonntag vor dem 25. Dezember
-            DateTime ersterAdvent = CalculateFirstAdvent(date.Year);
+            DateTime ersterAdvent = CalculateFirstAdvent(source.Year);
 
             DateTime totensonntag = ersterAdvent.AddDays(-7);
 
             // Buß- und Bettag ist der Mittwoch vor dem Totensonntag
             DateTime bussUndBettag = totensonntag.AddDays(-4); // 4 Tage zurück von Sonntag zu Mittwoch
 
-            if (bussUndBettag.Year == date.Year && bussUndBettag.Month == date.Month && bussUndBettag.Day == date.Day)
+            if (bussUndBettag.Year == source.Year && bussUndBettag.Month == source.Month && bussUndBettag.Day == source.Day)
             {
                 return true;
             }
@@ -549,27 +517,42 @@
         /// In german 'Buss- und Bettag'.
         /// </summary>
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public static bool IsRepentanceAndPrayerDay(this DateTime date, FederalStates bundesland)
+        public static bool IsRepentanceAndPrayerDay(this DateTime source, FederalStates federalState)
         {
 
-            if (bundesland == FederalStates.Saxony)
+            if (federalState == FederalStates.Saxony)
             {
-                return IsRepentanceAndPrayerDay(date);
+                return IsRepentanceAndPrayerDay(source);
             }
-            else if (bundesland == FederalStates.Lower_Saxony ||
-                     bundesland == FederalStates.Hamburg ||
-                     bundesland == FederalStates.Schleswig_Holstein ||
-                     bundesland == FederalStates.Bremen)
+            else if (federalState == FederalStates.Lower_Saxony ||
+                     federalState == FederalStates.Hamburg ||
+                     federalState == FederalStates.Schleswig_Holstein ||
+                     federalState == FederalStates.Bremen)
             {
-                if (date.Year < 1995)
+                if (source.Year < 1995)
                 {
-                    return IsRepentanceAndPrayerDay(date);
+                    return IsRepentanceAndPrayerDay(source);
                 }
             }
             return false;
         }
 
+        //private
 
+        private static bool IsCorpusChristi(DateTime ostersonntag, DateTime source,  FederalStates federalState)
+        {
+            if (federalState == FederalStates.Bavaria ||
+                federalState == FederalStates.Baden_Wuerttemberg ||
+                federalState == FederalStates.Hesse ||
+                federalState == FederalStates.North_Rhine_Westphalia ||
+                federalState == FederalStates.Rhineland_Palatinate ||
+                federalState == FederalStates.Saarland
+                )
+            {
+                return IsCorpusChristi(ostersonntag, source);
+            }
+            return false;
+        }
 
         private static bool IsCorpusChristi(DateTime ostersonntag, DateTime source)
         {

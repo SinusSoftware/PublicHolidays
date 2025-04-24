@@ -22,7 +22,9 @@ bool value = datetime.IsSundayOrPublicHoliday(PublicHolidays.FederalStates.Bavar
 == Changelog ==
 
 = 1.0.2 =
+* Add function to check only for sundays and nationwide holidays
 * Code maintenance
+* More comments
 
 = 1.0.1 =
 * Show comments
